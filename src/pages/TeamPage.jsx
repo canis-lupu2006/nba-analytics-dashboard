@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { teams, players, games } from '../lib/data'
 import { buildStandings } from '../lib/standings'
 import { teamLogo } from '../lib/logos'
+import { playerPhoto } from '../lib/photos'
 
 const teamsById = Object.fromEntries(teams.map((t) => [t.id, t]))
 
@@ -63,6 +64,13 @@ export default function TeamPage() {
               <tr key={p.id}>
                 <td className="team">
                   <Link to={`/player/${p.id}`} className="player-link">
+                    <img
+                      className="player-thumb"
+                      src={playerPhoto(p.id)}
+                      alt={p.name}
+                      loading="lazy"
+                      onError={(e) => (e.currentTarget.style.display = 'none')}
+                    />
                     <span>{p.name}</span>
                     <span className="chevron">›</span>
                   </Link>

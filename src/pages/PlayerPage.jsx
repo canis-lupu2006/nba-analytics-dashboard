@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { teams, players } from '../lib/data'
 import { teamLogo } from '../lib/logos'
+import { playerPhoto } from '../lib/photos'
 
 const teamsById = Object.fromEntries(teams.map((t) => [t.id, t]))
 
@@ -39,13 +40,33 @@ export default function PlayerPage() {
     <div className="team-page">
       <Link to={`/team/${team.id}`} className="back-link">← {team.full_name}</Link>
 
-      <div className="team-header">
-        <img className="team-logo-xl" src={teamLogo(team.abbreviation)} alt={team.full_name} />
-        <div>
-          <h1>{player.name}</h1>
-          <p className="team-sub">
-            {team.full_name} · Poste {player.position} · #{player.jersey ?? '–'}
-          </p>
+      <div className="player-header">
+        <div className="player-photo-wrap">
+          <img
+            className="player-photo"
+            src={playerPhoto(player.id)}
+            alt={player.name}
+            onError={(e) => {
+              e.currentTarget.style.display = 'none'
+              e.currentTarget.nextElementSibling.style.display = 'flex'
+            }}
+          />
+          <div className="player-photo-fallback">
+            <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+              <circle cx="32" cy="32" r="29" fill="#2a2f3c" stroke="#4a5164" strokeWidth="2.5" />
+              <path d="M3 32h58" stroke="#4a5164" strokeWidth="2" fill="none" />
+              <path d="M12 8c8 12 8 36 0 48M52 8c-8 12-8 36 0 48" stroke="#4a5164" strokeWidth="2" fill="none" />
+            </svg>
+          </div>
+        </div>
+        <div className="team-header">
+          <img className="team-logo-xl" src={teamLogo(team.abbreviation)} alt={team.full_name} />
+          <div>
+            <h1>{player.name}</h1>
+            <p className="team-sub">
+              {team.full_name} · Poste {player.position} · #{player.jersey ?? '–'}
+            </p>
+          </div>
         </div>
       </div>
 

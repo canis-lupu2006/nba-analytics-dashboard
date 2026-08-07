@@ -10,7 +10,8 @@ function App() {
       <div className="app">
         <header className="topbar">
           <Link to="/" className="brand">
-            NBA Analytics Dashboard
+            <img src="/logo.svg" alt="NBA Analytics" className="brand-logo" />
+            <span>NBA Analytics</span>
           </Link>
           <nav className="tabs">
             <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')} end>

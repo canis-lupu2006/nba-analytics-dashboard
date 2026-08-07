@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { teams, players } from '../lib/data'
 import { teamLogo } from '../lib/logos'
+import { playerPhoto } from '../lib/photos'
 
 export default function Home() {
   const [query, setQuery] = useState('')
@@ -30,6 +31,13 @@ export default function Home() {
             {results.length === 0 && <div className="no-result">Aucun joueur trouvé</div>}
             {results.map((p) => (
               <Link key={p.id} to={`/player/${p.id}`} className="search-item">
+                <img
+                  className="player-thumb"
+                  src={playerPhoto(p.id)}
+                  alt={p.name}
+                  loading="lazy"
+                  onError={(e) => (e.currentTarget.style.display = 'none')}
+                />
                 <span className="search-name">{p.name}</span>
                 <span className="search-meta">
                   {p.team} · {p.games} MJ · {p.pts?.toFixed(1)} PPG
