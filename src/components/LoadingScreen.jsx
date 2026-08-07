@@ -3,7 +3,7 @@ export default function LoadingScreen({ fading }) {
     <div className={`loading-screen${fading ? ' fading' : ''}`}>
       <div className="loading-content">
         <div className="loading-ball">
-          <img src="/logo.svg" alt="" />
+          <img src="/chargement.jpg" alt="" />
         </div>
         <h1 className="loading-title">NBA Analytics</h1>
         <div className="loading-bar">
