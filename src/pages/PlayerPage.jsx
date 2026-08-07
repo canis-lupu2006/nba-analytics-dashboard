@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useLeague } from '../context/useLeague'
+import { PlayerRadar } from '../components/PlayerRadar'
 
 function fmt(n) {
   return n == null ? '–' : Number(n).toFixed(1)
@@ -107,6 +108,8 @@ export default function PlayerPage() {
         <StatBox label="Interceptions" value={fmt(player.stl)} />
         <StatBox label="Contres" value={fmt(player.blk)} />
       </div>
+
+      <PlayerRadar player={player} />
 
       <div className="card">
         <h3>Efficacité au tir</h3>

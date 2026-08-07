@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { useLeague } from '../context/useLeague'
 import { buildStandings } from '../lib/standings'
+import { TeamWinCurve } from '../components/TeamWinCurve'
 
 function fmt(n) {
   return n == null ? '–' : Number(n).toFixed(1)
@@ -41,6 +42,8 @@ export default function TeamPage() {
           </p>
         </div>
       </div>
+
+      <TeamWinCurve games={games} teamId={team.id} />
 
       <h2 className="section-title">Effectif · {roster.length} joueuses / joueurs</h2>
       <div className="card">

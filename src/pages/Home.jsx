@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLeague } from '../context/useLeague'
+import { TopScorers } from '../components/TopScorers'
 
 function normalize(s) {
   return s
@@ -59,6 +60,8 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      <TopScorers players={players} league={league} />
 
       <h2 className="section-title">
         Équipes {league.label} — {seasonLabel}
