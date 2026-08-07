@@ -2,8 +2,6 @@
   --text: #d7d9e0;
   --text-h: #ffffff;
   --bg: #0b0d14;
-  --bg-gradient: radial-gradient(1200px 600px at 70% -10%, rgba(232, 89, 60, 0.16), transparent 60%),
-    radial-gradient(900px 500px at 10% 110%, rgba(232, 89, 60, 0.08), transparent 55%);
   --panel: rgba(23, 26, 34, 0.85);
   --panel-solid: #171a22;
   --border: #262b38;
@@ -33,7 +31,11 @@ body {
 
 body {
   background-color: var(--bg);
-  background-image: var(--bg-gradient);
+  background-image:
+    linear-gradient(rgba(11, 13, 20, 0.62), rgba(11, 13, 20, 0.62)),
+    url('/arriereplan.jpg');
+  background-size: cover;
+  background-position: center;
   background-attachment: fixed;
 }
 
