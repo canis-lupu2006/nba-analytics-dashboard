@@ -15,6 +15,95 @@
   }
 }
 
+/* ---------- Écran de chargement ---------- */
+
+@keyframes spinBall {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loadFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(900px 500px at 50% -10%, rgba(232, 89, 60, 0.12), transparent 60%),
+    linear-gradient(180deg, #141720, #0b0d14 70%);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loading-screen.fading {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.court-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  animation: fadeSlide 0.5s ease both;
+}
+
+.loading-ball {
+  width: 84px;
+  height: 84px;
+  animation: spinBall 1.4s linear infinite;
+  filter: drop-shadow(0 8px 24px rgba(232, 89, 60, 0.4));
+}
+
+.loading-ball img {
+  width: 100%;
+  height: 100%;
+}
+
+.loading-title {
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+
+.loading-bar {
+  width: 220px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent-grad);
+  animation: loadFill 1.8s ease-in-out both;
+}
+
+/* ---------- Écran de chargement (fin) ---------- */
+
 main {
   animation: fadeSlide 0.35s ease both;
 }
