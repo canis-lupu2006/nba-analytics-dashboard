@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from 'node:fs'
+import { parse } from 'csv-parse/sync'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -6,18 +7,11 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const csvPath = process.argv[2]
 const DATA_DIR = resolve(ROOT, 'src', 'data')
 
-const lines = readFileSync(csvPath, 'utf8').trim().split('\n')
-const [header, ...body] = lines
-const cols = header.split(',').map((c) => c.trim())
-
-function rowObj(csvLine) {
-  const parts = csvLine.split(',')
-  const obj = {}
-  cols.forEach((c, i) => (obj[c] = parts[i]))
-  return obj
-}
-
-const rows = body.map(rowObj)
+const rows = parse(readFileSync(csvPath, 'utf8'), {
+  columns: true,
+  skip_empty_lines: true,
+  trim: true,
+})
 
 const byPlayer = new Map()
 for (const r of rows) {
