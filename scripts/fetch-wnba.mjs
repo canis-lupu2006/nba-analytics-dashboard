@@ -48,8 +48,9 @@ for (const t of teamList.items || []) {
     abbreviation: detail.abbreviation,
   })
 }
-writeFileSync(join(OUT, 'teams.json'), JSON.stringify(teams, null, 2))
-console.log(`Teams: ${teams.length}`)
+const leagueTeams = teams.filter((t) => t.conference === 'East' || t.conference === 'West')
+writeFileSync(join(OUT, 'teams.json'), JSON.stringify(leagueTeams, null, 2))
+console.log(`Teams: ${leagueTeams.length} (league only, dropped ${teams.length - leagueTeams.length} national teams)`)
 
 // ---------- 2. Games via scoreboard pagination ----------
 console.log('Fetching games...')
@@ -87,15 +88,17 @@ for (const [start, end] of windows) {
   console.log(`  window ${start}-${end}: ${(j.events || []).length} events`)
   await delay(300)
 }
-const gamesArr = [...games.values()]
+const gamesArr = [...games.values()].filter((g) => {
+  const known = new Set(leagueTeams.map((t) => t.id))
+  return known.has(g.home_team.id) && known.has(g.visitor_team.id)
+})
 writeFileSync(join(OUT, 'games.json'), JSON.stringify(gamesArr, null, 2))
-console.log(`Games: ${gamesArr.length}`)
+console.log(`Games: ${gamesArr.length} (dropped ${games.size - gamesArr.length} national-team games)`)
 
 // ---------- 3. Rosters + player bios/stats ----------
 console.log('Fetching rosters and player stats...')
 const players = []
 const seen = new Set()
-const leagueTeams = teams.filter((t) => t.conference === 'East' || t.conference === 'West')
 
 for (const t of leagueTeams) {
   const rosterRef = `${API}/seasons/${SEASON}/teams/${t.id}/athletes?limit=50`

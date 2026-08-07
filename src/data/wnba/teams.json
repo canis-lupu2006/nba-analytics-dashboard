@@ -108,24 +108,6 @@
     "abbreviation": "ATL"
   },
   {
-    "id": 17475,
-    "conference": "International",
-    "division": null,
-    "city": "Japan",
-    "name": "JAPAN",
-    "full_name": "JAPAN",
-    "abbreviation": "JPN"
-  },
-  {
-    "id": 17476,
-    "conference": "International",
-    "division": null,
-    "city": "Nigeria",
-    "name": "NIGERIA",
-    "full_name": "NIGERIA",
-    "abbreviation": "NIGER"
-  },
-  {
     "id": 129689,
     "conference": "West",
     "division": null,

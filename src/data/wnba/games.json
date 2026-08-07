@@ -19,25 +19,6 @@
     }
   },
   {
-    "id": 401867790,
-    "date": "2026-04-25",
-    "season": 2026,
-    "status": "Final",
-    "status_state": "final",
-    "postseason": true,
-    "home_team_score": 89,
-    "visitor_team_score": 63,
-    "datetime": "2026-04-25T19:00Z",
-    "home_team": {
-      "id": 6,
-      "full_name": "Los Angeles Sparks"
-    },
-    "visitor_team": {
-      "id": 17476,
-      "full_name": "NIGERIA"
-    }
-  },
-  {
     "id": 401866152,
     "date": "2026-04-25",
     "season": 2026,
@@ -92,44 +73,6 @@
     "visitor_team": {
       "id": 14,
       "full_name": "Seattle Storm"
-    }
-  },
-  {
-    "id": 401869973,
-    "date": "2026-04-27",
-    "season": 2026,
-    "status": "Final",
-    "status_state": "final",
-    "postseason": true,
-    "home_team_score": 94,
-    "visitor_team_score": 78,
-    "datetime": "2026-04-27T00:00Z",
-    "home_team": {
-      "id": 17,
-      "full_name": "Las Vegas Aces"
-    },
-    "visitor_team": {
-      "id": 17475,
-      "full_name": "JAPAN"
-    }
-  },
-  {
-    "id": 401867791,
-    "date": "2026-04-28",
-    "season": 2026,
-    "status": "Final",
-    "status_state": "final",
-    "postseason": true,
-    "home_team_score": 88,
-    "visitor_team_score": 79,
-    "datetime": "2026-04-28T00:00Z",
-    "home_team": {
-      "id": 8,
-      "full_name": "Minnesota Lynx"
-    },
-    "visitor_team": {
-      "id": 17476,
-      "full_name": "NIGERIA"
     }
   },
   {
@@ -190,25 +133,6 @@
     }
   },
   {
-    "id": 401867792,
-    "date": "2026-04-30",
-    "season": 2026,
-    "status": "Final",
-    "status_state": "final",
-    "postseason": true,
-    "home_team_score": 86,
-    "visitor_team_score": 60,
-    "datetime": "2026-04-30T02:00Z",
-    "home_team": {
-      "id": 11,
-      "full_name": "Phoenix Mercury"
-    },
-    "visitor_team": {
-      "id": 17475,
-      "full_name": "JAPAN"
-    }
-  },
-  {
     "id": 401866518,
     "date": "2026-04-30",
     "season": 2026,
@@ -244,25 +168,6 @@
     "visitor_team": {
       "id": 131935,
       "full_name": "Toronto Tempo"
-    }
-  },
-  {
-    "id": 401867794,
-    "date": "2026-05-02",
-    "season": 2026,
-    "status": "Final",
-    "status_state": "final",
-    "postseason": true,
-    "home_team_score": 105,
-    "visitor_team_score": 57,
-    "datetime": "2026-05-02T23:00Z",
-    "home_team": {
-      "id": 5,
-      "full_name": "Indiana Fever"
-    },
-    "visitor_team": {
-      "id": 17476,
-      "full_name": "NIGERIA"
     }
   },
   {
@@ -4196,25 +4101,6 @@
     "visitor_team": {
       "id": 3,
       "full_name": "Dallas Wings"
-    }
-  },
-  {
-    "id": 401857320,
-    "date": "2026-07-26",
-    "season": 2026,
-    "status": "Final",
-    "status_state": "final",
-    "postseason": false,
-    "home_team_score": 122,
-    "visitor_team_score": 129,
-    "datetime": "2026-07-26T00:30Z",
-    "home_team": {
-      "id": 133384,
-      "full_name": "TEAM COOP"
-    },
-    "visitor_team": {
-      "id": 133383,
-      "full_name": "TEAM SPOON"
     }
   },
   {
