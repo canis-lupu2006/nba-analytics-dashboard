@@ -13,15 +13,22 @@ const cache = existsSync(outPath) ? JSON.parse(readFileSync(outPath, 'utf8')) : 
 const BATCH = 20
 const DELAY_MS = 250
 
-async function fetchAge(id) {
+async function fetchBio(id) {
   const res = await fetch(`https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/athletes/${id}`)
   if (res.status === 429) {
     await new Promise((r) => setTimeout(r, 5000))
-    return fetchAge(id)
+    return fetchBio(id)
   }
-  if (!res.ok) return { age: null, birthDate: null }
+  if (!res.ok) return { age: null, birthDate: null, height: null, weight: null, experience: null, salary: null }
   const j = await res.json()
-  return { age: j.age ?? null, birthDate: j.dateOfBirth ? j.dateOfBirth.slice(0, 10) : null }
+  return {
+    age: j.age ?? null,
+    birthDate: j.dateOfBirth ? j.dateOfBirth.slice(0, 10) : null,
+    height: j.height ?? null,
+    weight: j.weight ?? null,
+    experience: j.experience?.years ?? null,
+    salary: j.contract?.salary ?? null,
+  }
 }
 
 let done = 0
@@ -31,8 +38,8 @@ for (let i = 0; i < players.length; i += BATCH) {
   const batch = players.slice(i, i + BATCH)
   await Promise.all(
     batch.map(async (p) => {
-      if (cache[p.id] && cache[p.id].age != null) return
-      cache[p.id] = await fetchAge(p.id)
+      if (cache[p.id] && cache[p.id].salary != null) return
+      cache[p.id] = await fetchBio(p.id)
       done++
     }),
   )
@@ -42,4 +49,5 @@ for (let i = 0; i < players.length; i += BATCH) {
 
 writeFileSync(outPath, JSON.stringify(cache, null, 2))
 const filled = Object.values(cache).filter((v) => v.age != null).length
-console.log(`Done. ${filled}/${total} players have an age. Saved to ${outPath}`)
+const withSalary = Object.values(cache).filter((v) => v.salary != null).length
+console.log(`Done. ${filled}/${total} with age, ${withSalary}/${total} with salary. Saved to ${outPath}`)

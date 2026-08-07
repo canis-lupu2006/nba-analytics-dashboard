@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { teams, players } from '../lib/data'
 import { teamLogo } from '../lib/logos'
@@ -7,6 +8,32 @@ const teamsById = Object.fromEntries(teams.map((t) => [t.id, t]))
 
 function fmt(n) {
   return n == null ? '–' : Number(n).toFixed(1)
+}
+
+function formatHeight(inches) {
+  if (inches == null) return '–'
+  const cm = Math.round(inches * 2.54)
+  const ft = Math.floor(inches / 12)
+  const rest = inches % 12
+  return `${ft}′${rest}″ (${cm} cm)`
+}
+
+function formatWeight(lbs) {
+  if (lbs == null) return '–'
+  const kg = Math.round(lbs * 0.4536)
+  return `${kg} kg (${lbs} lb)`
+}
+
+function formatSalary(v) {
+  if (v == null) return '–'
+  if (v === 0) return 'Non renseigné'
+  return `${(v / 1000000).toFixed(1)} M$`
+}
+
+function formatDate(d) {
+  if (!d) return '–'
+  const [y, m, day] = d.split('-')
+  return `${day}/${m}/${y}`
 }
 
 function StatBox({ label, value, sub }) {
@@ -21,6 +48,7 @@ function StatBox({ label, value, sub }) {
 
 export default function PlayerPage() {
   const { id } = useParams()
+  const [showDetails, setShowDetails] = useState(false)
   const player = players.find((p) => p.id === Number(id))
 
   if (!player) {
@@ -89,6 +117,29 @@ export default function PlayerPage() {
           <StatBox label="Passes/pertes" value={fmt(player.astTo)} />
         </div>
       </div>
+
+      <button
+        type="button"
+        className={`details-toggle${showDetails ? ' open' : ''}`}
+        onClick={() => setShowDetails((v) => !v)}
+        aria-expanded={showDetails}
+      >
+        <span className="details-toggle-icon" aria-hidden="true" />
+        <span>Détails du joueur</span>
+        <span className="details-chevron" aria-hidden="true">▾</span>
+      </button>
+
+      {showDetails && (
+        <div className="details-panel">
+          <div className="stat-grid small">
+            <StatBox label="Date de naissance" value={formatDate(player.birthDate)} sub={player.age ? ` ${player.age} ans` : ''} />
+            <StatBox label="Taille" value={formatHeight(player.height)} />
+            <StatBox label="Poids" value={formatWeight(player.weight)} />
+            <StatBox label="Expérience" value={player.experience == null ? '–' : `${player.experience} saisons`} />
+            <StatBox label="Salaire (2026)" value={formatSalary(player.salary)} />
+          </div>
+        </div>
+      )}
 
       <div className="card">
         <h3>Bonus</h3>
