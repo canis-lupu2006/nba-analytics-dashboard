@@ -35,20 +35,29 @@
 ## Architecture
 - `src/lib/data.js` — importe les JSON snapshot (teams, games_2025, players_2026)
 - `src/lib/standings.js` — calcule le classement (W/L/PCT/streak/diff) depuis les matchs
-- `src/components/Standings.jsx` — tableaux Est/Ouest
-- `src/components/Players.jsx` — stats des 19 vedettes (saison 2025-26)
-- `src/App.jsx` — onglets Classement/Joueurs
+- `src/pages/Home.jsx` — accueil : grille des 30 équipes avec logos (ESPN CDN) + barre de recherche joueur
+- `src/pages/TeamPage.jsx` — page équipe : logo, rang conférence, effectif complet avec stats
+- `src/pages/PlayerPage.jsx` — page joueur : stats détaillées (PPG/RPG/APG, tirs, DD/TD)
+- `src/App.jsx` — routing react-router-dom : `/`, `/team/:id`, `/player/:id`
 - `scripts/fetch-nba-data.mjs` — regénère teams.json + games_2025.json depuis balldontlie (respecte 5 req/min)
-- `scripts/build-player-data.mjs` — transforme le CSV ESPN en players_2026.json
+- `scripts/build-player-data.mjs` — transforme le CSV ESPN en players_2026.json (582 joueurs)
 - `scripts/test-standings.mjs` — vérifie la logique de classement
+
+## Navigation (modèle foot demandé par l'utilisateur)
+1. Accueil → 30 équipes avec logos (comme les ligues)
+2. Clic équipe → page équipe avec logo + effectif complet
+3. Clic joueur → stats détaillées
+4. Barre de recherche (accueil) → cherche n'importe quel joueur des 582
+
+## Logos
+- Source : `https://a.espncdn.com/i/teamlogos/nba/500/{ABBR}.png` (CDN ESPN, fonctionne)
+- NBA CDN officiel bloqué (403)
 
 ## État d'avancement
 - [x] Repo GitHub créé + CONTEXT.md poussé
-- [x] Projet React + Vite + Recharts installé
-- [x] Clé API balldontlie (plan gratuit)
-- [x] Snapshot données : 30 équipes, 1236 matchs saison 2025-26, 19 joueurs vedettes
-- [x] Composant Classement des équipes (calculé des matchs réels)
-- [x] Composant Stats des joueurs (CSV ESPN)
-- [x] Style / dashboard layout (dark, badges équipes)
+- [x] Projet React + Vite installé
+- [x] Snapshot données : 30 équipes, 1236 matchs, 582 joueurs
+- [x] Navigation 3 pages (accueil / équipe / joueur) + recherche
+- [x] Logos ESPN CDN
 - [ ] Déploiement (Vercel/Netlify)
 - [ ] Soumission Devpost

@@ -1,39 +1,37 @@
-import { useState } from 'react'
-import { teams, games, SEASON } from './lib/data'
-import { buildStandings } from './lib/standings'
-import Standings from './components/Standings'
-import Players from './components/Players'
+import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom'
+import Home from './pages/Home'
+import TeamPage from './pages/TeamPage'
+import PlayerPage from './pages/PlayerPage'
 import './App.css'
 
-const teamsById = Object.fromEntries(teams.map((t) => [t.id, t]))
-const standings = buildStandings(games, teamsById)
-
 function App() {
-  const [tab, setTab] = useState('standings')
-
   return (
-    <div className="app">
-      <header className="topbar">
-        <h1>NBA Analytics Dashboard</h1>
-        <nav className="tabs">
-          <button className={tab === 'standings' ? 'active' : ''} onClick={() => setTab('standings')}>
-            Classement
-          </button>
-          <button className={tab === 'players' ? 'active' : ''} onClick={() => setTab('players')}>
-            Joueurs
-          </button>
-        </nav>
-      </header>
+    <BrowserRouter>
+      <div className="app">
+        <header className="topbar">
+          <Link to="/" className="brand">
+            NBA Analytics Dashboard
+          </Link>
+          <nav className="tabs">
+            <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')} end>
+              Équipes
+            </NavLink>
+          </nav>
+        </header>
 
-      <main>
-        {tab === 'standings' && <Standings standings={standings} teamsById={teamsById} />}
-        {tab === 'players' && <Players season={SEASON} players={players} />}
-      </main>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/team/:id" element={<TeamPage />} />
+            <Route path="/player/:id" element={<PlayerPage />} />
+          </Routes>
+        </main>
 
-      <footer className="footer">
-        AQX Sports Analytics Data Bowl 3.0 · Données : balldontlie.io &amp; sportsdataverse (ESPN)
-      </footer>
-    </div>
+        <footer className="footer">
+          AQX Sports Analytics Data Bowl 3.0 · Données : balldontlie.io &amp; sportsdataverse (ESPN)
+        </footer>
+      </div>
+    </BrowserRouter>
   )
 }
 
