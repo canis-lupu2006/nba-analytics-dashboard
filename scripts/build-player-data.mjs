@@ -45,7 +45,7 @@ const players = [...byPlayer.values()]
   .map((p) => {
     const a = p.averages
     return {
-      id: p.id,
+      id: Number(p.id),
       name: p.name,
       position: p.position,
       jersey: num(p.jersey),

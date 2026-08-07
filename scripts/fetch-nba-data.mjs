@@ -32,8 +32,11 @@ await mkdir(DATA_DIR, { recursive: true })
 
 console.log('Fetching teams...')
 const teams = await get('/teams?per_page=100')
-await writeFile(resolve(DATA_DIR, 'teams.json'), JSON.stringify(teams.data))
-console.log(`  ${teams.data.length} teams saved`)
+const nbaTeams = teams.data.filter(
+  (t) => t.conference === 'East' || t.conference === 'West',
+)
+await writeFile(resolve(DATA_DIR, 'teams.json'), JSON.stringify(nbaTeams))
+console.log(`  ${nbaTeams.length} NBA teams saved`)
 
 console.log('Fetching games season 2025...')
 const allGames = []
