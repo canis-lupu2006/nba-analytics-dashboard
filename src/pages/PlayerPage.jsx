@@ -1,10 +1,6 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { teams, players } from '../lib/data'
-import { teamLogo } from '../lib/logos'
-import { playerPhoto } from '../lib/photos'
-
-const teamsById = Object.fromEntries(teams.map((t) => [t.id, t]))
+import { useLeague } from '../context/useLeague'
 
 function fmt(n) {
   return n == null ? '–' : Number(n).toFixed(1)
@@ -47,6 +43,8 @@ function StatBox({ label, value, sub }) {
 }
 
 export default function PlayerPage() {
+  const league = useLeague()
+  const { teams, players, logo, photo, route } = league
   const { id } = useParams()
   const [showDetails, setShowDetails] = useState(false)
   const player = players.find((p) => p.id === Number(id))
@@ -54,25 +52,27 @@ export default function PlayerPage() {
   if (!player) {
     return (
       <div className="team-page">
-        <Link to="/" className="back-link">← Retour</Link>
+        <Link to={route} className="back-link">← Retour</Link>
         <p className="muted">Joueur introuvable.</p>
       </div>
     )
   }
 
-  const team = Object.values(teamsById).find((t) => t.full_name === player.team)
+  const team = teams.find((t) => t.full_name === player.team)
   const gp = player.games || 0
   const mpg = player.min
 
   return (
     <div className="team-page">
-      <Link to={`/team/${team.id}`} className="back-link">← {team.full_name}</Link>
+      {team && (
+        <Link to={`${route}/team/${team.id}`} className="back-link">← {team.full_name}</Link>
+      )}
 
       <div className="player-header">
         <div className="player-photo-wrap">
           <img
             className="player-photo"
-            src={playerPhoto(player.id)}
+            src={photo(player.id)}
             alt={player.name}
             onError={(e) => {
               e.currentTarget.style.display = 'none'
@@ -88,11 +88,11 @@ export default function PlayerPage() {
           </div>
         </div>
         <div className="team-header">
-          <img className="team-logo-xl" src={teamLogo(team.abbreviation)} alt={team.full_name} />
+          {team && <img className="team-logo-xl" src={logo(team.abbreviation)} alt={team.full_name} />}
           <div>
             <h1>{player.name}</h1>
             <p className="team-sub">
-              {team.full_name} · Poste {player.position} · #{player.jersey ?? '–'}
+              {team ? team.full_name : player.team} · Poste {player.position} · #{player.jersey ?? '–'}
               {player.age ? ` · ${player.age} ans` : ''}
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function PlayerPage() {
             <StatBox label="Taille" value={formatHeight(player.height)} />
             <StatBox label="Poids" value={formatWeight(player.weight)} />
             <StatBox label="Expérience" value={player.experience == null ? '–' : `${player.experience} saisons`} />
-            <StatBox label="Salaire (2026)" value={formatSalary(player.salary)} />
+            <StatBox label="Salaire" value={formatSalary(player.salary)} />
           </div>
         </div>
       )}

@@ -1,0 +1,155 @@
+[
+  {
+    "id": 3,
+    "conference": "West",
+    "division": null,
+    "city": "Dallas",
+    "name": "Wings",
+    "full_name": "Dallas Wings",
+    "abbreviation": "DAL"
+  },
+  {
+    "id": 5,
+    "conference": "East",
+    "division": null,
+    "city": "Indiana",
+    "name": "Fever",
+    "full_name": "Indiana Fever",
+    "abbreviation": "IND"
+  },
+  {
+    "id": 6,
+    "conference": "West",
+    "division": null,
+    "city": "Los Angeles",
+    "name": "Sparks",
+    "full_name": "Los Angeles Sparks",
+    "abbreviation": "LA"
+  },
+  {
+    "id": 8,
+    "conference": "West",
+    "division": null,
+    "city": "Minnesota",
+    "name": "Lynx",
+    "full_name": "Minnesota Lynx",
+    "abbreviation": "MIN"
+  },
+  {
+    "id": 9,
+    "conference": "East",
+    "division": null,
+    "city": "New York",
+    "name": "Liberty",
+    "full_name": "New York Liberty",
+    "abbreviation": "NY"
+  },
+  {
+    "id": 11,
+    "conference": "West",
+    "division": null,
+    "city": "Phoenix",
+    "name": "Mercury",
+    "full_name": "Phoenix Mercury",
+    "abbreviation": "PHX"
+  },
+  {
+    "id": 14,
+    "conference": "West",
+    "division": null,
+    "city": "Seattle",
+    "name": "Storm",
+    "full_name": "Seattle Storm",
+    "abbreviation": "SEA"
+  },
+  {
+    "id": 16,
+    "conference": "East",
+    "division": null,
+    "city": "Washington",
+    "name": "Mystics",
+    "full_name": "Washington Mystics",
+    "abbreviation": "WSH"
+  },
+  {
+    "id": 17,
+    "conference": "West",
+    "division": null,
+    "city": "Las Vegas",
+    "name": "Aces",
+    "full_name": "Las Vegas Aces",
+    "abbreviation": "LV"
+  },
+  {
+    "id": 18,
+    "conference": "East",
+    "division": null,
+    "city": "Connecticut",
+    "name": "Sun",
+    "full_name": "Connecticut Sun",
+    "abbreviation": "CON"
+  },
+  {
+    "id": 19,
+    "conference": "East",
+    "division": null,
+    "city": "Chicago",
+    "name": "Sky",
+    "full_name": "Chicago Sky",
+    "abbreviation": "CHI"
+  },
+  {
+    "id": 20,
+    "conference": "East",
+    "division": null,
+    "city": "Atlanta",
+    "name": "Dream",
+    "full_name": "Atlanta Dream",
+    "abbreviation": "ATL"
+  },
+  {
+    "id": 17475,
+    "conference": "International",
+    "division": null,
+    "city": "Japan",
+    "name": "JAPAN",
+    "full_name": "JAPAN",
+    "abbreviation": "JPN"
+  },
+  {
+    "id": 17476,
+    "conference": "International",
+    "division": null,
+    "city": "Nigeria",
+    "name": "NIGERIA",
+    "full_name": "NIGERIA",
+    "abbreviation": "NIGER"
+  },
+  {
+    "id": 129689,
+    "conference": "West",
+    "division": null,
+    "city": "Golden State",
+    "name": "Valkyries",
+    "full_name": "Golden State Valkyries",
+    "abbreviation": "GS"
+  },
+  {
+    "id": 131935,
+    "conference": "East",
+    "division": null,
+    "city": "Toronto",
+    "name": "Tempo",
+    "full_name": "Toronto Tempo",
+    "abbreviation": "TOR"
+  },
+  {
+    "id": 132052,
+    "conference": "West",
+    "division": null,
+    "city": "Portland",
+    "name": "Fire",
+    "full_name": "Portland Fire",
+    "abbreviation": "POR"
+  }
+]
