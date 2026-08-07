@@ -15,7 +15,7 @@ export default function TeamPage() {
   const team = teamsById[Number(id)]
 
   if (!team) {
-    return <p className="muted">Équipe introuvable.</p>
+    return <p className="muted">Team not found.</p>
   }
 
   const roster = players
@@ -29,27 +29,27 @@ export default function TeamPage() {
 
   return (
     <div className="team-page">
-      <Link to={route} className="back-link">← Toutes les équipes</Link>
+      <Link to={route} className="back-link">← All teams</Link>
 
       <div className="team-header">
         <img className="team-logo-xl" src={logo(team.abbreviation)} alt={team.full_name} />
         <div>
           <h1>{team.full_name}</h1>
           <p className="team-sub">
-            {team.conference} · {team.division || 'Ligue'} · {rank ? `#${rank} de la conférence` : ''}
-            {row ? ` — ${row.wins}V ${row.losses}D` : ''}
+            {team.conference} · {team.division || 'League'} · {rank ? `#${rank} in conference` : ''}
+            {row ? ` — ${row.wins}W ${row.losses}L` : ''}
           </p>
         </div>
       </div>
 
-      <h2 className="section-title">Effectif · {roster.length} joueuses / joueurs</h2>
+      <h2 className="section-title">Roster · {roster.length} players</h2>
       <div className="card">
         <table className="standings-table">
           <thead>
             <tr>
-              <th>Joueur</th>
+              <th>Player</th>
               <th>POS</th>
-              <th>Âge</th>
+              <th>Age</th>
               <th>MJ</th>
               <th>PPG</th>
               <th>RPG</th>

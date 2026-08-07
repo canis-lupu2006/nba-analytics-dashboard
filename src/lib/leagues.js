@@ -21,7 +21,7 @@ export const LEAGUES = {
       `https://a.espncdn.com/i/teamlogos/nba/500/${NBA_LOGO_ALIASES[abbr] || abbr}.png`,
     photo: (id) =>
       `https://a.espncdn.com/combiner/i?img=i/headshots/nba/players/full/${id}.png&w=220&h=254`,
-    seasonLabel: 'Saison 2025-26',
+    seasonLabel: '2025-26 Season',
   },
   wnba: {
     key: 'wnba',
@@ -34,7 +34,7 @@ export const LEAGUES = {
     logo: (abbr) => `https://a.espncdn.com/i/teamlogos/wnba/500/${abbr.toLowerCase()}.png`,
     photo: (id) =>
       `https://a.espncdn.com/combiner/i?img=i/headshots/wnba/players/full/${id}.png&w=220&h=254`,
-    seasonLabel: 'Saison 2026',
+    seasonLabel: '2026 Season',
   },
 }
 

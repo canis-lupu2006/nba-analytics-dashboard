@@ -29,7 +29,7 @@ export default function Home() {
       <div className="search-bar">
         <input
           type="text"
-          placeholder="Rechercher une joueuse / un joueur…"
+          placeholder="Search for a player…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           autoFocus
@@ -38,7 +38,7 @@ export default function Home() {
           <div className="search-results">
             {results.length === 0 && (
               <div className="no-result">
-                Aucune joueuse / aucun joueur trouvé — seuls les joueurs avec stats {seasonLabel} sont inclus
+                No player found — only players with {seasonLabel} stats are included
               </div>
             )}
             {results.map((p) => (
@@ -52,7 +52,7 @@ export default function Home() {
                 />
                 <span className="search-name">{p.name}</span>
                 <span className="search-meta">
-                  {p.team} · {p.age ? `${p.age} ans` : `${p.games} MJ`} · {p.pts?.toFixed(1)} PPG
+                  {p.team} · {p.age ? `${p.age} yrs` : `${p.games} GP`} · {p.pts?.toFixed(1)} PPG
                 </span>
               </Link>
             ))}
@@ -61,7 +61,7 @@ export default function Home() {
       </div>
 
       <h2 className="section-title">
-        Équipes {league.label} — {seasonLabel}
+        {league.label} Teams — {seasonLabel}
       </h2>
       <div className="teams-grid">
         {teams.map((t) => (
@@ -77,7 +77,7 @@ export default function Home() {
             />
             <span className="team-card-name">{t.full_name}</span>
             <span className="team-card-conf">
-              {t.conference} · {t.division || 'Ligue'}
+              {t.conference} · {t.division || 'League'}
             </span>
           </Link>
         ))}

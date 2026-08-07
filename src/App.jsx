@@ -23,7 +23,7 @@ function Shell() {
               NBA
             </NavLink>
             <NavLink to="/wnba" className={({ isActive }) => (isActive ? 'active' : '')}>
-              Féminine
+              Women's
             </NavLink>
           </nav>
         </header>
@@ -40,7 +40,7 @@ function Shell() {
         </main>
 
         <footer className="footer">
-          AQX Sports Analytics Data Bowl 3.0 · Données : ESPN (sportsdataverse) &amp; balldontlie.io
+          AQX Sports Analytics Data Bowl 3.0 · Data: ESPN (sportsdataverse) &amp; balldontlie.io
         </footer>
       </div>
     </LeagueProvider>

@@ -22,8 +22,8 @@ function formatWeight(lbs) {
 
 function formatSalary(v) {
   if (v == null) return '–'
-  if (v === 0) return 'Non renseigné'
-  return `${(v / 1000000).toFixed(1)} M$`
+  if (v === 0) return 'Not reported'
+  return `$${(v / 1000000).toFixed(1)}M`
 }
 
 function formatDate(d) {
@@ -52,8 +52,8 @@ export default function PlayerPage() {
   if (!player) {
     return (
       <div className="team-page">
-        <Link to={route} className="back-link">← Retour</Link>
-        <p className="muted">Joueur introuvable.</p>
+        <Link to={route} className="back-link">← Back</Link>
+        <p className="muted">Player not found.</p>
       </div>
     )
   }
@@ -92,29 +92,29 @@ export default function PlayerPage() {
           <div>
             <h1>{player.name}</h1>
             <p className="team-sub">
-              {team ? team.full_name : player.team} · Poste {player.position} · #{player.jersey ?? '–'}
-              {player.age ? ` · ${player.age} ans` : ''}
+              {team ? team.full_name : player.team} · Position {player.position} · #{player.jersey ?? '–'}
+              {player.age ? ` · ${player.age} yrs` : ''}
             </p>
           </div>
         </div>
       </div>
 
       <div className="stat-grid">
-        <StatBox label="Points / match" value={fmt(player.pts)} sub={`en ${gp} matchs`} />
-        <StatBox label="Rebonds / match" value={fmt(player.reb)} />
-        <StatBox label="Passes / match" value={fmt(player.ast)} />
-        <StatBox label="Minutes / match" value={fmt(mpg)} />
-        <StatBox label="Interceptions" value={fmt(player.stl)} />
-        <StatBox label="Contres" value={fmt(player.blk)} />
+        <StatBox label="Points per game" value={fmt(player.pts)} sub={`in ${gp} games`} />
+        <StatBox label="Rebounds per game" value={fmt(player.reb)} />
+        <StatBox label="Assists per game" value={fmt(player.ast)} />
+        <StatBox label="Minutes per game" value={fmt(mpg)} />
+        <StatBox label="Steals" value={fmt(player.stl)} />
+        <StatBox label="Blocks" value={fmt(player.blk)} />
       </div>
 
       <div className="card">
-        <h3>Efficacité au tir</h3>
+        <h3>Shooting</h3>
         <div className="stat-grid small">
-          <StatBox label="Tirs réussis" value={fmt(player.fgPct) + '%'} />
-          <StatBox label="À 3 points" value={fmt(player.threePct) + '%'} />
-          <StatBox label="Lancers francs" value={fmt(player.ftPct) + '%'} />
-          <StatBox label="Passes/pertes" value={fmt(player.astTo)} />
+          <StatBox label="FG% made" value={fmt(player.fgPct) + '%'} />
+          <StatBox label="3PT" value={fmt(player.threePct) + '%'} />
+          <StatBox label="Free throws" value={fmt(player.ftPct) + '%'} />
+          <StatBox label="Assists/TO" value={fmt(player.astTo)} />
         </div>
       </div>
 
@@ -125,24 +125,24 @@ export default function PlayerPage() {
         aria-expanded={showDetails}
       >
         <span className="details-toggle-icon" aria-hidden="true" />
-        <span>Détails du joueur</span>
+        <span>Player details</span>
         <span className="details-chevron" aria-hidden="true">▾</span>
       </button>
 
       {showDetails && (
         <div className="details-panel">
           <div className="stat-grid small">
-            <StatBox label="Date de naissance" value={formatDate(player.birthDate)} sub={player.age ? ` ${player.age} ans` : ''} />
-            <StatBox label="Taille" value={formatHeight(player.height)} />
-            <StatBox label="Poids" value={formatWeight(player.weight)} />
-            <StatBox label="Expérience" value={player.experience == null ? '–' : `${player.experience} saisons`} />
-            <StatBox label="Salaire" value={formatSalary(player.salary)} />
+            <StatBox label="Date of birth" value={formatDate(player.birthDate)} sub={player.age ? ` ${player.age} yrs` : ''} />
+            <StatBox label="Height" value={formatHeight(player.height)} />
+            <StatBox label="Weight" value={formatWeight(player.weight)} />
+            <StatBox label="Experience" value={player.experience == null ? '–' : `${player.experience} seasons`} />
+            <StatBox label="Salary" value={formatSalary(player.salary)} />
           </div>
         </div>
       )}
 
       <div className="card">
-        <h3>Bonus</h3>
+        <h3>Extras</h3>
         <div className="stat-grid small">
           <StatBox label="Double-doubles" value={player.dd2 ?? '–'} />
           <StatBox label="Triple-doubles" value={player.td3 ?? '–'} />
