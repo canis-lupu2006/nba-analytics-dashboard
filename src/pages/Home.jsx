@@ -4,14 +4,22 @@ import { teams, players } from '../lib/data'
 import { teamLogo } from '../lib/logos'
 import { playerPhoto } from '../lib/photos'
 
+function normalize(s) {
+  return s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[\u2018\u2019\u0060\u00b4]/g, "'")
+}
+
 export default function Home() {
   const [query, setQuery] = useState('')
 
   const results = useMemo(() => {
-    const q = query.trim().toLowerCase()
+    const q = normalize(query)
     if (!q) return null
     return players
-      .filter((p) => p.name.toLowerCase().includes(q))
+      .filter((p) => normalize(p.name).includes(q))
       .sort((a, b) => (b.pts || 0) - (a.pts || 0))
       .slice(0, 12)
   }, [query])
@@ -28,7 +36,11 @@ export default function Home() {
         />
         {results && (
           <div className="search-results">
-            {results.length === 0 && <div className="no-result">Aucun joueur trouvé</div>}
+            {results.length === 0 && (
+              <div className="no-result">
+                Aucun joueur trouvé — seuls les joueurs avec stats 2025-26 sont inclus
+              </div>
+            )}
             {results.map((p) => (
               <Link key={p.id} to={`/player/${p.id}`} className="search-item">
                 <img
