@@ -49,6 +49,7 @@ export default function TeamPage() {
             <tr>
               <th>Joueur</th>
               <th>POS</th>
+              <th>Âge</th>
               <th>MJ</th>
               <th>PPG</th>
               <th>RPG</th>
@@ -76,6 +77,7 @@ export default function TeamPage() {
                   </Link>
                 </td>
                 <td>{p.position}</td>
+                <td>{p.age ?? '–'}</td>
                 <td>{p.games}</td>
                 <td>{fmt(p.pts)}</td>
                 <td>{fmt(p.reb)}</td>

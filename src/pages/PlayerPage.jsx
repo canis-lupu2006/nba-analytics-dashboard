@@ -65,6 +65,7 @@ export default function PlayerPage() {
             <h1>{player.name}</h1>
             <p className="team-sub">
               {team.full_name} · Poste {player.position} · #{player.jersey ?? '–'}
+              {player.age ? ` · ${player.age} ans` : ''}
             </p>
           </div>
         </div>

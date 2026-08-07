@@ -52,7 +52,7 @@ export default function Home() {
                 />
                 <span className="search-name">{p.name}</span>
                 <span className="search-meta">
-                  {p.team} · {p.games} MJ · {p.pts?.toFixed(1)} PPG
+                  {p.team} · {p.age ? `${p.age} ans` : `${p.games} MJ`} · {p.pts?.toFixed(1)} PPG
                 </span>
               </Link>
             ))}
