@@ -1,10 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { teams, players } from '../lib/data'
-
-function teamLogo(abbr) {
-  return `https://a.espncdn.com/i/teamlogos/nba/500/${abbr}.png`
-}
+import { teamLogo } from '../lib/logos'
 
 export default function Home() {
   const [query, setQuery] = useState('')

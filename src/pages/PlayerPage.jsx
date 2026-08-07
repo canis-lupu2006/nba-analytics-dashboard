@@ -1,11 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { teams, players } from '../lib/data'
+import { teamLogo } from '../lib/logos'
 
 const teamsById = Object.fromEntries(teams.map((t) => [t.id, t]))
-
-function teamLogo(abbr) {
-  return `https://a.espncdn.com/i/teamlogos/nba/500/${abbr}.png`
-}
 
 function fmt(n) {
   return n == null ? '–' : Number(n).toFixed(1)
