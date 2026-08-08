@@ -34,6 +34,16 @@ node scripts/fetch-nba-data.mjs
 node scripts/build-player-data.mjs <chemin-du-csv>
 ```
 
+## TO-DO avant la deadline (15 août 2026) — viser la 1re place
+
+Objectif : renforcer le critère **Analytical Insight** du hackathon ("actionable insights" plutôt que stats descriptives).
+
+- [ ] **Insight analytique** : ajouter au moins 1 analyse solide (ex. corrélation efficacité au tir ↔ victoires, ou modèle de "team strength" basé sur le point differential)
+- [ ] **Métriques avancées** : ajouter TS% et PER sur les pages joueur/équipe
+- [ ] **README** : documenter la méthodologie des insights (quoi, pourquoi, résultat)
+- [ ] **Devpost** : mettre à jour la description avec les nouveaux insights + re-soumettre avant le 15 août
+- [ ] **Vérifs** : `npm run lint` + `npm run build` avant chaque push (le repo est connecté à Vercel, ne pas casser le build)
+
 ## Crédits
 
 - Données NBA : [balldontlie.io](https://balldontlie.io) (scores, matchs)
